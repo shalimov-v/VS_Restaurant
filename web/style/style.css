@@ -1,0 +1,37 @@
+* {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+li {
+    list-style: none;
+    padding: 5px;
+    color: #0063DC;
+    border:solid 1px #dddddd;
+    width: 100px;
+}
+li:hover {
+    color:#FF0084;
+    cursor: pointer;
+}
+
+.leftArea {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    bottom: 10px;
+    width: 200px;
+    border: none;
+}
+
+.mainArea {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 220px;
+    width:400px;
+    border: none;
+}
+
+.mainArea label {
+    color: #0063DC;
+}

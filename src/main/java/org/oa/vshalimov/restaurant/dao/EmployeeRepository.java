@@ -23,7 +23,7 @@ public class EmployeeRepository {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            employees = (List<Employee>) session.createQuery("from Employee ").list();
+            employees = (List<Employee>) session.createQuery("FROM Employee ORDER BY lastName").list();
             transaction.commit();
         } catch (HibernateException e) {
             if (transaction != null) {

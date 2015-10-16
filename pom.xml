@@ -40,6 +40,8 @@
 
     <properties>
         <hibernate.version>4.3.11.Final</hibernate.version>
+        <jersey.version>1.19</jersey.version>
+        <log4j.version>2.4.1</log4j.version>
     </properties>
 
     <dependencies>
@@ -66,22 +68,22 @@
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-bundle</artifactId>
-            <version>1.19</version>
+            <version>${jersey.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-server</artifactId>
-            <version>1.19</version>
+            <version>${jersey.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-core</artifactId>
-            <version>1.19</version>
+            <version>${jersey.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-json</artifactId>
-            <version>1.19</version>
+            <version>${jersey.version}</version>
         </dependency>
     </dependencies>
 

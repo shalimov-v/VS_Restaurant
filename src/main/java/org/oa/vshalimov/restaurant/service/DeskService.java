@@ -1,37 +1,37 @@
 package org.oa.vshalimov.restaurant.service;
 
 import org.oa.vshalimov.restaurant.repository.FacadeRepository;
-import org.oa.vshalimov.restaurant.data.Employee;
+import org.oa.vshalimov.restaurant.data.Desk;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/employees")
-public class EmployeeService {
+@Path("/desks")
+public class DeskService {
 
     FacadeRepository facade = FacadeRepository.getInstance();
 
     @GET
     @Produces({ MediaType.APPLICATION_JSON })
-    public List<Employee> loadAll() {
-        return facade.getEmployeeRepository().loadAll();
+    public List<Desk> loadAll() {
+        return facade.getDeskRepository().loadAll();
     }
 
     @GET
     @Path("{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public Employee findById(@PathParam("id") String id) {
-        return facade.getEmployeeRepository().findById(Integer.parseInt(id));
+    public Desk findById(@PathParam("id") String id) {
+        return facade.getDeskRepository().findById(Integer.parseInt(id));
     }
 
     @POST
     @Consumes({ MediaType.APPLICATION_JSON })
     @Produces({ MediaType.APPLICATION_JSON })
-    public Response create(Employee employee) {
-        if (facade.getEmployeeRepository().create(employee)) {
-            return Response.ok(employee, MediaType.APPLICATION_JSON_TYPE).build();
+    public Response create(Desk table) {
+        if (facade.getDeskRepository().create(table)) {
+            return Response.ok(table, MediaType.APPLICATION_JSON_TYPE).build();
         } else {
             return Response.status(304).build();
         }
@@ -40,9 +40,9 @@ public class EmployeeService {
     @PUT
     @Consumes({ MediaType.APPLICATION_JSON })
     @Produces({ MediaType.APPLICATION_JSON })
-    public Response update(Employee employee) {
-        if (facade.getEmployeeRepository().update(employee)) {
-            return Response.ok(employee, MediaType.APPLICATION_JSON_TYPE).build();
+    public Response update(Desk desk) {
+        if (facade.getDeskRepository().update(desk)) {
+            return Response.ok(desk, MediaType.APPLICATION_JSON_TYPE).build();
         } else {
             return Response.status(304).build();
         }
@@ -51,9 +51,9 @@ public class EmployeeService {
     @DELETE
     @Consumes({ MediaType.APPLICATION_JSON })
     @Produces({ MediaType.APPLICATION_JSON })
-    public Response delete(Employee employee) {
-        if (facade.getEmployeeRepository().delete(employee)) {
-            return Response.ok(employee, MediaType.APPLICATION_JSON_TYPE).build();
+    public Response delete(Desk desk) {
+        if (facade.getDeskRepository().delete(desk)) {
+            return Response.ok(desk, MediaType.APPLICATION_JSON_TYPE).build();
         } else {
             return Response.status(304).build();
         }

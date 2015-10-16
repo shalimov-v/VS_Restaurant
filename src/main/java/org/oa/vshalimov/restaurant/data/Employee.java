@@ -1,9 +1,12 @@
 package org.oa.vshalimov.restaurant.data;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "employee")
+@XmlRootElement(name = "Employee")
 public class Employee {
 
     @Id
@@ -19,14 +22,17 @@ public class Employee {
     public Employee() {
     }
 
+    @XmlElement
     public int getId() {
         return id;
     }
 
+    @XmlElement
     public String getFirstName() {
         return firstName;
     }
 
+    @XmlElement
     public String getLastName() {
         return lastName;
     }

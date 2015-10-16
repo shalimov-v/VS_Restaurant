@@ -1,29 +1,29 @@
-package org.oa.vshalimov.restaurant.dao;
+package org.oa.vshalimov.restaurant.repository;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.oa.vshalimov.restaurant.data.Employee;
+import org.oa.vshalimov.restaurant.data.Desk;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeRepository {
+public class DeskRepository {
 
     private final SessionFactory sessionFactory;
 
-    public EmployeeRepository(SessionFactory sessionFactory) {
+    public DeskRepository(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-    public List<Employee> loadAll() {
+    public List<Desk> loadAll() {
         Session session = sessionFactory.openSession();
-        List<Employee> employees = new ArrayList<>();
+        List<Desk> desks = new ArrayList<>();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            employees = (List<Employee>) session.createQuery("FROM Employee ORDER BY lastName").list();
+            desks = (List<Desk>) session.createQuery("FROM Desk ORDER BY deskName").list();
             transaction.commit();
         } catch (HibernateException e) {
             if (transaction != null) {
@@ -34,16 +34,16 @@ public class EmployeeRepository {
         finally {
             session.close();
         }
-        return employees;
+        return desks;
     }
 
-    public Employee findById(int itemId) {
+    public Desk findById(int itemId) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
-        Employee employee = null;
+        Desk desk = null;
         try {
             transaction = session.beginTransaction();
-            employee = (Employee) session.createQuery("FROM Employee WHERE id=" + itemId).uniqueResult();
+            desk = (Desk) session.createQuery("FROM Desk WHERE deskId=" + itemId).uniqueResult();
             transaction.commit();
         } catch (HibernateException e) {
             if (transaction != null) {
@@ -54,10 +54,10 @@ public class EmployeeRepository {
         finally {
             session.close();
         }
-        return employee;
+        return desk;
     }
 
-    public boolean create(Employee itemToCreate) {
+    public boolean create(Desk itemToCreate) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
@@ -77,7 +77,7 @@ public class EmployeeRepository {
         return true;
     }
 
-    public boolean update(Employee itemToUpdate) {
+    public boolean update(Desk itemToUpdate) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
@@ -97,7 +97,7 @@ public class EmployeeRepository {
         return true;
     }
 
-    public boolean delete(Employee itemToDelete) {
+    public boolean delete(Desk itemToDelete) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {

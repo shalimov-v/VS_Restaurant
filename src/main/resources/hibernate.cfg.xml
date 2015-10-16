@@ -16,5 +16,6 @@
     <property name="format_sql">false</property>
     <property name="hbm2ddl.auto">validate</property>
     <mapping class="org.oa.vshalimov.restaurant.data.Employee"/>
+    <mapping class="org.oa.vshalimov.restaurant.data.Desk"/>
 </session-factory>
 </hibernate-configuration>

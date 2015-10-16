@@ -1,4 +1,4 @@
-package org.oa.vshalimov.restaurant.dao;
+package org.oa.vshalimov.restaurant.repository;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -12,6 +12,7 @@ public class FacadeRepository {
     private static SessionFactory sessionFactory;
 
     private EmployeeRepository employeeRepository;
+    private DeskRepository deskRepository;
 
     private FacadeRepository() {
         try {
@@ -34,5 +35,12 @@ public class FacadeRepository {
             employeeRepository = new EmployeeRepository(sessionFactory);
         }
         return employeeRepository;
+    }
+
+    public DeskRepository getDeskRepository() {
+        if (deskRepository == null) {
+            deskRepository = new DeskRepository(sessionFactory);
+        }
+        return deskRepository;
     }
 }

@@ -1,0 +1,51 @@
+<script type="text/javascript" src="../script/dish.js"></script>
+<table cellpadding="5">
+    <tr>
+        <td>
+            <label for="dishList">Dish:</label>
+        </td>
+        <td>
+            <select id="dishList"></select>
+        </td>
+        <td>
+            <input type="button" id="btnLoad" value="Load" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="dishId">Dish ID:</label>
+        </td>
+        <td colspan="2">
+            <input type="text" id="dishId" size="50" disabled />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="dishName">Dish Name:</label>
+        </td>
+        <td colspan="2">
+            <input type="text" id="dishName" size="50"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="dishTypeList">Dish Type:</label>
+        </td>
+        <td colspan="2">
+            <select id="dishTypeList"></select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="dishDescription">Dish Description:</label>
+        </td>
+        <td colspan="2">
+            <textarea id="dishDescription" rows="10" cols="50"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" align="center">
+            <input type="button" id="btnSave" value="Save" />&nbsp;&nbsp;&nbsp;<input type="button" id="btnDelete" value="Delete" />
+        </td>
+    </tr>
+</table>

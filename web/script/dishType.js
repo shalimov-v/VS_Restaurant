@@ -5,7 +5,6 @@ var currentDishType;
 var $mainArea = $('#mainArea');
 
 function loadAllDishTypes() {
-    console.log('loadAllDishTypes');
     $.ajax({
         type: 'GET',
         url: rootURL,
@@ -15,14 +14,12 @@ function loadAllDishTypes() {
 }
 
 function findDishTypeById(id) {
-    console.log('findDishTypeById: ' + id);
     $.ajax({
         type: 'GET',
         url: rootURL + '/' + id,
         dataType: "json",
         success: function(data){
             $('#btnDelete').show();
-            console.log('findDishTypeById success: ' + data.dishTypeName);
             currentDishType = data;
             renderDishTypeDetails(currentDishType);
         }
@@ -30,7 +27,6 @@ function findDishTypeById(id) {
 }
 
 function createDishType() {
-    console.log('createDishType');
     $.ajax({
         type: 'POST',
         contentType: 'application/json',
@@ -47,7 +43,6 @@ function createDishType() {
 }
 
 function updateDishType() {
-    console.log('updateDishType');
     $.ajax({
         type: 'PUT',
         contentType: 'application/json',
@@ -64,7 +59,6 @@ function updateDishType() {
 }
 
 function deleteDishType() {
-    console.log('deleteDishType');
     $.ajax({
         type: 'DELETE',
         contentType: 'application/json',

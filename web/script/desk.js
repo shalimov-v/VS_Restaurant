@@ -5,7 +5,6 @@ var currentDesk;
 var $mainArea = $('#mainArea');
 
 function loadAllDesks() {
-    console.log('loadAllDesks');
     $.ajax({
         type: 'GET',
         url: rootURL,
@@ -15,14 +14,12 @@ function loadAllDesks() {
 }
 
 function findDeskById(id) {
-    console.log('findDeskById: ' + id);
     $.ajax({
         type: 'GET',
         url: rootURL + '/' + id,
         dataType: "json",
         success: function(data){
             $('#btnDelete').show();
-            console.log('findDeskById success: ' + data.deskName);
             currentDesk = data;
             renderDeskDetails(currentDesk);
         }
@@ -30,7 +27,6 @@ function findDeskById(id) {
 }
 
 function createDesk() {
-    console.log('createDesk');
     $.ajax({
         type: 'POST',
         contentType: 'application/json',
@@ -47,7 +43,6 @@ function createDesk() {
 }
 
 function updateDesk() {
-    console.log('updateDesk');
     $.ajax({
         type: 'PUT',
         contentType: 'application/json',
@@ -64,7 +59,6 @@ function updateDesk() {
 }
 
 function deleteDesk() {
-    console.log('deleteDesk');
     $.ajax({
         type: 'DELETE',
         contentType: 'application/json',

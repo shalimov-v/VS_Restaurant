@@ -5,7 +5,6 @@ var currentEmployee;
 var $mainArea = $('#mainArea');
 
 function loadAllEmployees() {
-    console.log('loadAllEmployees');
     $.ajax({
         type: 'GET',
         url: rootURL,
@@ -15,14 +14,12 @@ function loadAllEmployees() {
 }
 
 function findEmployeeById(id) {
-    console.log('findEmployeedById: ' + id);
     $.ajax({
         type: 'GET',
         url: rootURL + '/' + id,
         dataType: "json",
         success: function(data){
             $('#btnDelete').show();
-            console.log('findEmployeeById success: ' + data.employeeLastName + ' ' + data.employeeFirstName);
             currentEmployee = data;
             renderEmployeeDetails(currentEmployee);
         }
@@ -30,7 +27,6 @@ function findEmployeeById(id) {
 }
 
 function createEmployee() {
-    console.log('createEmployee');
     $.ajax({
         type: 'POST',
         contentType: 'application/json',
@@ -47,7 +43,6 @@ function createEmployee() {
 }
 
 function updateEmployee() {
-    console.log('updateEmployee');
     $.ajax({
         type: 'PUT',
         contentType: 'application/json',
@@ -64,7 +59,6 @@ function updateEmployee() {
 }
 
 function deleteEmployee() {
-    console.log('deleteEmployee');
     $.ajax({
         type: 'DELETE',
         contentType: 'application/json',

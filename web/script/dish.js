@@ -121,13 +121,14 @@ function renderDishList(data) {
 }
 
 function renderDishDetails(dish) {
+    loadAllDishTypes(dish.dishType.dishTypeId);
     $mainArea.find('#dishId').val(dish.dishId);
     $mainArea.find('#dishName').val(dish.dishName);
     $mainArea.find('#dishDescription').val(dish.dishDescription);
-    loadAllDishTypes(dish.dishType.dishTypeId);
 }
 
 function clearDishDetails() {
+    loadAllDishTypes(0);
     $mainArea.find('#dishId').val('');
     $mainArea.find('#dishName').val('');
     $mainArea.find('#dishDescription').val('');
@@ -151,7 +152,7 @@ $(document).ready(function(){
     });
 
     $mainArea.find('#btnSave').click(function(){
-        if ($mainArea.find('#dishName').val() == '' || $mainArea.find('#dishDescription').val() == '' || $mainArea.find('#dishTypeList').val() == 0)  {
+        if ($mainArea.find('#dishName').val() == '' || $mainArea.find('#dishTypeList').val() == 0)  {
             alert('Please fill all fields');
         } else {
             if ($mainArea.find('#dishId').val() == '') {
@@ -161,7 +162,6 @@ $(document).ready(function(){
             }
             clearDishDetails();
             loadAllDishes();
-            loadAllDishTypes();
         }
     });
 

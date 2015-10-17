@@ -23,7 +23,7 @@ public class DishRepository {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            dishes = (List<Dish>) session.createQuery("FROM Dish ORDER BY dishName").list();
+            dishes = (List<Dish>) session.createQuery("FROM Dish ORDER BY dishType.dishTypeId, dishName").list();
             transaction.commit();
         } catch (HibernateException e) {
             if (transaction != null) {

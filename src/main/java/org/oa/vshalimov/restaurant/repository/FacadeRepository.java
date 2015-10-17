@@ -13,6 +13,8 @@ public class FacadeRepository {
 
     private EmployeeRepository employeeRepository;
     private DeskRepository deskRepository;
+    private DishTypeRepository dishTypeRepository;
+    private DishRepository dishRepository;
 
     private FacadeRepository() {
         try {
@@ -42,5 +44,19 @@ public class FacadeRepository {
             deskRepository = new DeskRepository(sessionFactory);
         }
         return deskRepository;
+    }
+
+    public DishTypeRepository getDishTypeRepository() {
+        if (dishTypeRepository == null) {
+            dishTypeRepository = new DishTypeRepository(sessionFactory);
+        }
+        return dishTypeRepository;
+    }
+
+    public DishRepository getDishRepository() {
+        if (dishRepository == null) {
+            dishRepository = new DishRepository(sessionFactory);
+        }
+        return dishRepository;
     }
 }

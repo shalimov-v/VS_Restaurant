@@ -4,26 +4,26 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.oa.vshalimov.restaurant.data.Employee;
+import org.oa.vshalimov.restaurant.data.DishType;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeRepository {
+public class DishTypeRepository {
 
     private final SessionFactory sessionFactory;
 
-    public EmployeeRepository(SessionFactory sessionFactory) {
+    public DishTypeRepository(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-    public List<Employee> loadAll() {
+    public List<DishType> loadAll() {
         Session session = sessionFactory.openSession();
-        List<Employee> employees = new ArrayList<>();
+        List<DishType> dishTypes = new ArrayList<>();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            employees = (List<Employee>) session.createQuery("FROM Employee ORDER BY employeeLastName").list();
+            dishTypes = (List<DishType>) session.createQuery("FROM DishType ORDER BY dishTypeName").list();
             transaction.commit();
         } catch (HibernateException e) {
             if (transaction != null) {
@@ -33,16 +33,16 @@ public class EmployeeRepository {
         } finally {
             session.close();
         }
-        return employees;
+        return dishTypes;
     }
 
-    public Employee findById(int itemId) {
+    public DishType findById(int itemId) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
-        Employee employee = null;
+        DishType dishType = null;
         try {
             transaction = session.beginTransaction();
-            employee = (Employee) session.createQuery("FROM Employee WHERE employeeId=" + itemId).uniqueResult();
+            dishType = (DishType) session.createQuery("FROM DishType WHERE dishTypeId=" + itemId).uniqueResult();
             transaction.commit();
         } catch (HibernateException e) {
             if (transaction != null) {
@@ -52,10 +52,10 @@ public class EmployeeRepository {
         } finally {
             session.close();
         }
-        return employee;
+        return dishType;
     }
 
-    public boolean create(Employee itemToCreate) {
+    public boolean create(DishType itemToCreate) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
@@ -74,7 +74,7 @@ public class EmployeeRepository {
         return true;
     }
 
-    public boolean update(Employee itemToUpdate) {
+    public boolean update(DishType itemToUpdate) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
@@ -93,7 +93,7 @@ public class EmployeeRepository {
         return true;
     }
 
-    public boolean delete(Employee itemToDelete) {
+    public boolean delete(DishType itemToDelete) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
@@ -111,5 +111,4 @@ public class EmployeeRepository {
         }
         return true;
     }
-
 }

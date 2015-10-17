@@ -30,8 +30,7 @@ public class DeskRepository {
                 transaction.rollback();
             }
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             session.close();
         }
         return desks;
@@ -50,8 +49,7 @@ public class DeskRepository {
                 transaction.rollback();
             }
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             session.close();
         }
         return desk;
@@ -70,8 +68,7 @@ public class DeskRepository {
             }
             e.printStackTrace();
             return false;
-        }
-        finally {
+        } finally {
             session.close();
         }
         return true;
@@ -90,8 +87,7 @@ public class DeskRepository {
             }
             e.printStackTrace();
             return false;
-        }
-        finally {
+        } finally {
             session.close();
         }
         return true;

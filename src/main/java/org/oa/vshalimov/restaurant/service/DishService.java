@@ -1,37 +1,37 @@
 package org.oa.vshalimov.restaurant.service;
 
+import org.oa.vshalimov.restaurant.data.Dish;
 import org.oa.vshalimov.restaurant.repository.FacadeRepository;
-import org.oa.vshalimov.restaurant.data.Desk;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/desks")
-public class DeskService {
+@Path("/dishes")
+public class DishService {
 
     FacadeRepository facade = FacadeRepository.getInstance();
 
     @GET
     @Produces({ MediaType.APPLICATION_JSON })
-    public List<Desk> loadAll() {
-        return facade.getDeskRepository().loadAll();
+    public List<Dish> loadAll() {
+        return facade.getDishRepository().loadAll();
     }
 
     @GET
     @Path("{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public Desk findById(@PathParam("id") String id) {
-        return facade.getDeskRepository().findById(Integer.parseInt(id));
+    public Dish findById(@PathParam("id") String id) {
+        return facade.getDishRepository().findById(Integer.parseInt(id));
     }
 
     @POST
     @Consumes({ MediaType.APPLICATION_JSON })
     @Produces({ MediaType.APPLICATION_JSON })
-    public Response create(Desk desk) {
-        if (facade.getDeskRepository().create(desk)) {
-            return Response.ok(desk, MediaType.APPLICATION_JSON_TYPE).build();
+    public Response create(Dish dish) {
+        if (facade.getDishRepository().create(dish)) {
+            return Response.ok(dish, MediaType.APPLICATION_JSON_TYPE).build();
         } else {
             return Response.status(304).build();
         }
@@ -40,9 +40,9 @@ public class DeskService {
     @PUT
     @Consumes({ MediaType.APPLICATION_JSON })
     @Produces({ MediaType.APPLICATION_JSON })
-    public Response update(Desk desk) {
-        if (facade.getDeskRepository().update(desk)) {
-            return Response.ok(desk, MediaType.APPLICATION_JSON_TYPE).build();
+    public Response update(Dish dish) {
+        if (facade.getDishRepository().update(dish)) {
+            return Response.ok(dish, MediaType.APPLICATION_JSON_TYPE).build();
         } else {
             return Response.status(304).build();
         }
@@ -51,9 +51,9 @@ public class DeskService {
     @DELETE
     @Consumes({ MediaType.APPLICATION_JSON })
     @Produces({ MediaType.APPLICATION_JSON })
-    public Response delete(Desk desk) {
-        if (facade.getDeskRepository().delete(desk)) {
-            return Response.ok(desk, MediaType.APPLICATION_JSON_TYPE).build();
+    public Response delete(Dish dish) {
+        if (facade.getDishRepository().delete(dish)) {
+            return Response.ok(dish, MediaType.APPLICATION_JSON_TYPE).build();
         } else {
             return Response.status(304).build();
         }

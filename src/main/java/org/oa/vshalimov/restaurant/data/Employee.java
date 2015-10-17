@@ -10,43 +10,43 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Employee {
 
     @Id
-    @Column(name = "id")
-    private int id;
+    @Column(name = "employeeId")
+    private int employeeId;
 
-    @Column(name = "firstName")
-    private String firstName;
+    @Column(name = "employeeFirstName")
+    private String employeeFirstName;
 
-    @Column(name = "lastName")
-    private String lastName;
+    @Column(name = "employeeLastName")
+    private String employeeLastName;
 
     public Employee() {
     }
 
     @XmlElement
-    public int getId() {
-        return id;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
     @XmlElement
-    public String getFirstName() {
-        return firstName;
+    public String getEmployeeFirstName() {
+        return employeeFirstName;
     }
 
     @XmlElement
-    public String getLastName() {
-        return lastName;
+    public String getEmployeeLastName() {
+        return employeeLastName;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setEmployeeFirstName(String employeeFirstName) {
+        this.employeeFirstName = employeeFirstName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setEmployeeLastName(String employeeLastName) {
+        this.employeeLastName = employeeLastName;
     }
 
 }

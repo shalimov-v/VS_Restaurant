@@ -22,7 +22,7 @@ function findEmployeeById(id) {
         dataType: "json",
         success: function(data){
             $('#btnDelete').show();
-            console.log('findEmployeeById success: ' + data.lastName + ' ' + data.firstName);
+            console.log('findEmployeeById success: ' + data.employeeLastName + ' ' + data.employeeFirstName);
             currentEmployee = data;
             renderEmployeeDetails(currentEmployee);
         }
@@ -85,22 +85,22 @@ function renderEmployeeList(data) {
     $mainArea.find('#employeeList option').remove();
     $mainArea.find('#employeeList').append('<option value=0>- Select employee -</option>');
     $.each(list, function(index, employee) {
-        $mainArea.find('#employeeList').append('<option value=' + employee.id + '>' + employee.lastName + ' ' + employee.firstName + '</option>');
+        $mainArea.find('#employeeList').append('<option value=' + employee.employeeId + '>' + employee.employeeLastName + ' ' + employee.employeeFirstName + '</option>');
     });
 }
 
 function renderEmployeeDetails(employee) {
-    $mainArea.find('#employeeId').val(employee.id);
-    $mainArea.find('#employeeFirstName').val(employee.firstName);
-    $mainArea.find('#employeeLastName').val(employee.lastName);
+    $mainArea.find('#employeeId').val(employee.employeeId);
+    $mainArea.find('#employeeFirstName').val(employee.employeeFirstName);
+    $mainArea.find('#employeeLastName').val(employee.employeeLastName);
 }
 
 function employeeToJSON() {
     var employeeId = $mainArea.find('#employeeId').val();
     return JSON.stringify({
-        "id": employeeId == "" ? null : employeeId,
-        "firstName": $mainArea.find('#employeeFirstName').val(),
-        "lastName": $mainArea.find('#employeeLastName').val()
+        "employeeId": employeeId == "" ? null : employeeId,
+        "employeeFirstName": $mainArea.find('#employeeFirstName').val(),
+        "employeeLastName": $mainArea.find('#employeeLastName').val()
     });
 }
 

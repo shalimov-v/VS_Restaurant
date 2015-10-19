@@ -15,6 +15,7 @@ public class FacadeRepository {
     private DeskRepository deskRepository;
     private DishTypeRepository dishTypeRepository;
     private DishRepository dishRepository;
+    private MenuRepository menuRepository;
 
     private FacadeRepository() {
         try {
@@ -58,5 +59,12 @@ public class FacadeRepository {
             dishRepository = new DishRepository(sessionFactory);
         }
         return dishRepository;
+    }
+
+    public MenuRepository getMenuRepository() {
+        if (menuRepository == null) {
+            menuRepository = new MenuRepository(sessionFactory);
+        }
+        return menuRepository;
     }
 }

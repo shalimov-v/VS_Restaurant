@@ -111,6 +111,39 @@ function updateDish() {
     });
 }
 
+function deleteDish() {
+    var dishId = $mainArea.find('#dishId').val();
+    var dishTypeId = $mainArea.find('#dishTypeList').val();
+    var dishName = $mainArea.find('#dishName').val();
+    var dishDescription = $mainArea.find('#dishDescription').val();
+    $.ajax({
+        type: 'GET',
+        url: 'api/dishTypes/' + dishTypeId,
+        dataType: "json",
+        success: function(data){
+            var dish = {
+                "dishId": dishId == "" ? null : dishId,
+                "dishName": dishName,
+                "dishType": data,
+                "dishDescription": dishDescription
+            };
+            $.ajax({
+                type: 'DELETE',
+                contentType: 'application/json',
+                url: rootURL,
+                dataType: "json",
+                data: JSON.stringify(dish),
+                success: function(data, textStatus, jqXHR){
+                    alert('Record deleted successfully');
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    alert('Error while deleting record: ' + textStatus);
+                }
+            });
+        }
+    });
+}
+
 function renderDishList(data) {
     var list = data == null ? [] : (data instanceof Array ? data : [data]);
     $mainArea.find('#dishList option').remove();
@@ -163,6 +196,14 @@ $(document).ready(function(){
             clearDishDetails();
             loadAllDishes();
         }
+    });
+
+    $mainArea.find('#btnDelete').click(function(){
+        deleteDish();
+        $('#btnDelete').hide();
+        clearDishDetails();
+        loadAllDishes();
+        return false;
     });
 
 });

@@ -51,6 +51,23 @@ public class MenuRepository {
         return menu;
     }
 
+    public List<Menu> findByDishType(int dishTypeId) {
+        Session session = sessionFactory.openSession();
+        List<Menu> menus = new ArrayList<>();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            menus = (List<Menu>) session.createQuery("FROM Menu WHERE menuDish.dishType.dishTypeId IN (FROM DishType WHERE dishTypeId=" + dishTypeId + ") ORDER BY menuDish.dishName").list();
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return menus;
+    }
+
     public boolean create(Menu itemToCreate) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;

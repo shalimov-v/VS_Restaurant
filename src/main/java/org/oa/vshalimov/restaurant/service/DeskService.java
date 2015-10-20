@@ -2,60 +2,51 @@ package org.oa.vshalimov.restaurant.service;
 
 import org.oa.vshalimov.restaurant.repository.FacadeRepository;
 import org.oa.vshalimov.restaurant.data.Desk;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/desks")
+@Controller
+@RequestMapping("desks")
 public class DeskService {
 
     FacadeRepository facade = FacadeRepository.getInstance();
 
-    @GET
-    @Produces({ MediaType.APPLICATION_JSON })
-    public List<Desk> loadAll() {
+    @RequestMapping(produces = "application/json", method = RequestMethod.GET)
+    public @ResponseBody List<Desk> loadAll() {
         return facade.getDeskRepository().loadAll();
     }
 
-    @GET
-    @Path("{id}")
-    @Produces({ MediaType.APPLICATION_JSON })
-    public Desk findById(@PathParam("id") String id) {
+    @RequestMapping(value = "{id}", produces = "application/json", method = RequestMethod.GET)
+    public @ResponseBody Desk findById(@PathVariable("id") String id) {
         return facade.getDeskRepository().findById(Integer.parseInt(id));
     }
 
-    @POST
-    @Consumes({ MediaType.APPLICATION_JSON })
-    @Produces({ MediaType.APPLICATION_JSON })
-    public Response create(Desk desk) {
+    @RequestMapping(produces = "application/json", consumes = "application/json" ,method = RequestMethod.POST)
+    public @ResponseBody Desk create(@RequestBody Desk desk) {
         if (facade.getDeskRepository().create(desk)) {
-            return Response.ok(desk, MediaType.APPLICATION_JSON_TYPE).build();
+            return desk;
         } else {
-            return Response.status(304).build();
+            return null;
         }
     }
 
-    @PUT
-    @Consumes({ MediaType.APPLICATION_JSON })
-    @Produces({ MediaType.APPLICATION_JSON })
-    public Response update(Desk desk) {
+    @RequestMapping(produces = "application/json", consumes = "application/json" ,method = RequestMethod.PUT)
+    public @ResponseBody Desk update(@RequestBody Desk desk) {
         if (facade.getDeskRepository().update(desk)) {
-            return Response.ok(desk, MediaType.APPLICATION_JSON_TYPE).build();
+            return desk;
         } else {
-            return Response.status(304).build();
+            return null;
         }
     }
 
-    @DELETE
-    @Consumes({ MediaType.APPLICATION_JSON })
-    @Produces({ MediaType.APPLICATION_JSON })
-    public Response delete(Desk desk) {
+    @RequestMapping(produces = "application/json", consumes = "application/json" ,method = RequestMethod.DELETE)
+    public @ResponseBody Desk delete(@RequestBody Desk desk) {
         if (facade.getDeskRepository().delete(desk)) {
-            return Response.ok(desk, MediaType.APPLICATION_JSON_TYPE).build();
+            return desk;
         } else {
-            return Response.status(304).build();
+            return null;
         }
     }
 

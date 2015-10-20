@@ -2,60 +2,56 @@ package org.oa.vshalimov.restaurant.service;
 
 import org.oa.vshalimov.restaurant.data.Menu;
 import org.oa.vshalimov.restaurant.repository.FacadeRepository;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/menus")
+@Controller
+@RequestMapping("menus")
 public class MenuService {
 
     FacadeRepository facade = FacadeRepository.getInstance();
 
-    @GET
-    @Produces({ MediaType.APPLICATION_JSON })
-    public List<Menu> loadAll() {
+    @RequestMapping(produces = "application/json", method = RequestMethod.GET)
+    public @ResponseBody List<Menu> loadAll() {
         return facade.getMenuRepository().loadAll();
     }
 
-    @GET
-    @Path("{id}")
-    @Produces({ MediaType.APPLICATION_JSON })
-    public Menu findById(@PathParam("id") String id) {
+    @RequestMapping(value = "{id}", produces = "application/json", method = RequestMethod.GET)
+    public @ResponseBody Menu findById(@PathVariable("id") String id) {
         return facade.getMenuRepository().findById(Integer.parseInt(id));
     }
 
-    @POST
-    @Consumes({ MediaType.APPLICATION_JSON })
-    @Produces({ MediaType.APPLICATION_JSON })
-    public Response create(Menu menu) {
+    @RequestMapping(value = "/type/{id}", produces = "application/json", method = RequestMethod.GET)
+    public @ResponseBody List<Menu> findByDishTypeId(@PathVariable("id") String id) {
+        return facade.getMenuRepository().findByDishType(Integer.parseInt(id));
+    }
+
+    @RequestMapping(value = "{id}", produces = "application/json", method = RequestMethod.POST)
+    public @ResponseBody Menu create(@RequestBody Menu menu) {
         if (facade.getMenuRepository().create(menu)) {
-            return Response.ok(menu, MediaType.APPLICATION_JSON_TYPE).build();
+            return menu;
         } else {
-            return Response.status(304).build();
+            return null;
         }
     }
 
-    @PUT
-    @Consumes({ MediaType.APPLICATION_JSON })
-    @Produces({ MediaType.APPLICATION_JSON })
-    public Response update(Menu menu) {
+    @RequestMapping(value = "{id}", produces = "application/json", method = RequestMethod.PUT)
+    public @ResponseBody Menu update(@RequestBody Menu menu) {
         if (facade.getMenuRepository().update(menu)) {
-            return Response.ok(menu, MediaType.APPLICATION_JSON_TYPE).build();
+            return menu;
         } else {
-            return Response.status(304).build();
+            return null;
         }
     }
 
-    @DELETE
-    @Consumes({ MediaType.APPLICATION_JSON })
-    @Produces({ MediaType.APPLICATION_JSON })
-    public Response delete(Menu menu) {
+    @RequestMapping(value = "{id}", produces = "application/json", method = RequestMethod.DELETE)
+    public @ResponseBody Menu delete(@RequestBody Menu menu) {
         if (facade.getMenuRepository().delete(menu)) {
-            return Response.ok(menu, MediaType.APPLICATION_JSON_TYPE).build();
+            return menu;
         } else {
-            return Response.status(304).build();
+            return null;
         }
     }
 

@@ -2,60 +2,51 @@ package org.oa.vshalimov.restaurant.service;
 
 import org.oa.vshalimov.restaurant.data.Dish;
 import org.oa.vshalimov.restaurant.repository.FacadeRepository;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/dishes")
+@Controller
+@RequestMapping("dishes")
 public class DishService {
 
     FacadeRepository facade = FacadeRepository.getInstance();
 
-    @GET
-    @Produces({ MediaType.APPLICATION_JSON })
-    public List<Dish> loadAll() {
+    @RequestMapping(produces = "application/json", method = RequestMethod.GET)
+    public @ResponseBody List<Dish> loadAll() {
         return facade.getDishRepository().loadAll();
     }
 
-    @GET
-    @Path("{id}")
-    @Produces({ MediaType.APPLICATION_JSON })
-    public Dish findById(@PathParam("id") String id) {
+    @RequestMapping(value = "{id}", produces = "application/json", method = RequestMethod.GET)
+    public @ResponseBody Dish findById(@PathVariable("id") String id) {
         return facade.getDishRepository().findById(Integer.parseInt(id));
     }
 
-    @POST
-    @Consumes({ MediaType.APPLICATION_JSON })
-    @Produces({ MediaType.APPLICATION_JSON })
-    public Response create(Dish dish) {
+    @RequestMapping(produces = "application/json", consumes = "application/json" ,method = RequestMethod.POST)
+    public @ResponseBody Dish create(@RequestBody Dish dish) {
         if (facade.getDishRepository().create(dish)) {
-            return Response.ok(dish, MediaType.APPLICATION_JSON_TYPE).build();
+            return dish;
         } else {
-            return Response.status(304).build();
+            return null;
         }
     }
 
-    @PUT
-    @Consumes({ MediaType.APPLICATION_JSON })
-    @Produces({ MediaType.APPLICATION_JSON })
-    public Response update(Dish dish) {
+    @RequestMapping(produces = "application/json", consumes = "application/json" ,method = RequestMethod.PUT)
+    public @ResponseBody Dish update(@RequestBody Dish dish) {
         if (facade.getDishRepository().update(dish)) {
-            return Response.ok(dish, MediaType.APPLICATION_JSON_TYPE).build();
+            return dish;
         } else {
-            return Response.status(304).build();
+            return null;
         }
     }
 
-    @DELETE
-    @Consumes({ MediaType.APPLICATION_JSON })
-    @Produces({ MediaType.APPLICATION_JSON })
-    public Response delete(Dish dish) {
+    @RequestMapping(produces = "application/json", consumes = "application/json" ,method = RequestMethod.DELETE)
+    public @ResponseBody Dish delete(@RequestBody Dish dish) {
         if (facade.getDishRepository().delete(dish)) {
-            return Response.ok(dish, MediaType.APPLICATION_JSON_TYPE).build();
+            return dish;
         } else {
-            return Response.status(304).build();
+            return null;
         }
     }
 

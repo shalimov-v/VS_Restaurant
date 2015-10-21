@@ -2,6 +2,7 @@ package org.oa.vshalimov.restaurant.service;
 
 import org.oa.vshalimov.restaurant.repository.FacadeRepository;
 import org.oa.vshalimov.restaurant.data.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,8 @@ import java.util.List;
 @RequestMapping("employees")
 public class EmployeeService {
 
-    FacadeRepository facade = FacadeRepository.getInstance();
+    @Autowired
+    FacadeRepository facade;
 
     @RequestMapping(produces = "application/json", method = RequestMethod.GET)
     public @ResponseBody List<Employee> loadAll() {

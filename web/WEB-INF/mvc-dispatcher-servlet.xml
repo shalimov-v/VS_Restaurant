@@ -9,8 +9,10 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-       <context:component-scan base-package="org.oa.vshalimov.restaurant.service" />
+    <context:component-scan base-package="org.oa.vshalimov.restaurant.service" />
 
-       <mvc:annotation-driven />
+    <mvc:annotation-driven />
+
+    <bean id="facade" class="org.oa.vshalimov.restaurant.repository.FacadeRepository"/>
 
 </beans>

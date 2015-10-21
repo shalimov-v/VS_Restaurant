@@ -1,8 +1,22 @@
-<h1 class="title">Our menus</h1>
+<script type="text/javascript" src="../script/user_menu.js"></script>
+<h1 class="title">Our menu</h1>
 <div class="entry">
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
+    <table width="100%" cellpadding="5">
+        <tr valign="top">
+            <td id="leftArea" width="350">
+                <label for="dishTypeList">Dish Type:</label><br>
+                <select id="dishTypeList" onchange="selectMenuDishType();"></select><br><br>
+                <div id="menuDishes">
+                    <label for="menuDishesList">Dish:</label><br>
+                    <select id="menuDishesList" onchange="selectMenuDish();"></select>
+                </div>
+            </td>
+            <td id="mainArea">
+                <label>Dish Name:</label><label id="menuDishName"></label><br><br>
+                <label>Description:</label><label id="menuDishDescription"></label><br><br>
+                <label>Price:</label><label id="menuDishPrice"></label>
+            </td>
+        </tr>
+    </table>
 </div>
 <div class="bottom"></div>

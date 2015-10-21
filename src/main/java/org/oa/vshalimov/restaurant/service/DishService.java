@@ -13,7 +13,7 @@ import java.util.List;
 public class DishService {
 
     @Autowired
-    FacadeRepository facade;
+    private FacadeRepository facade;
 
     @RequestMapping(produces = "application/json", method = RequestMethod.GET)
     public @ResponseBody List<Dish> loadAll() {

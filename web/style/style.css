@@ -31,6 +31,10 @@ p, ul, ol {
 	line-height: 140%;
 }
 
+textarea {
+    resize: none;
+}
+
 /* Header */
 
 #logo {
@@ -140,12 +144,12 @@ p, ul, ol {
     border: none;
 }
 
-.content input, label, select {
+.content input, label, select, textarea {
     font: bold 1.0em "Trebuchet MS", Arial, Helvetica, sans-serif;
     margin: 5px 5px 5px 5px;
 }
 
-.content input[type=button], input[type=text], select {
+.content input[type=button], input[type=text], select, textarea {
     padding: 1px 5px;
 }
 

@@ -13,7 +13,7 @@ import java.util.List;
 public class DeskService {
 
     @Autowired
-    FacadeRepository facade;
+    private FacadeRepository facade;
 
 
     @RequestMapping(produces = "application/json", method = RequestMethod.GET)

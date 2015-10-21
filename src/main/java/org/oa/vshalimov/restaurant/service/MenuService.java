@@ -13,7 +13,7 @@ import java.util.List;
 public class MenuService {
 
     @Autowired
-    FacadeRepository facade;
+    private FacadeRepository facade;
 
     @RequestMapping(produces = "application/json", method = RequestMethod.GET)
     public @ResponseBody List<Menu> loadAll() {
@@ -30,7 +30,7 @@ public class MenuService {
         return facade.getMenuRepository().findByDishType(Integer.parseInt(id));
     }
 
-    @RequestMapping(value = "{id}", produces = "application/json", method = RequestMethod.POST)
+    @RequestMapping(produces = "application/json", consumes = "application/json", method = RequestMethod.POST)
     public @ResponseBody Menu create(@RequestBody Menu menu) {
         if (facade.getMenuRepository().create(menu)) {
             return menu;
@@ -39,7 +39,7 @@ public class MenuService {
         }
     }
 
-    @RequestMapping(value = "{id}", produces = "application/json", method = RequestMethod.PUT)
+    @RequestMapping(produces = "application/json", consumes = "application/json", method = RequestMethod.PUT)
     public @ResponseBody Menu update(@RequestBody Menu menu) {
         if (facade.getMenuRepository().update(menu)) {
             return menu;
@@ -48,7 +48,7 @@ public class MenuService {
         }
     }
 
-    @RequestMapping(value = "{id}", produces = "application/json", method = RequestMethod.DELETE)
+    @RequestMapping(produces = "application/json", consumes = "application/json", method = RequestMethod.DELETE)
     public @ResponseBody Menu delete(@RequestBody Menu menu) {
         if (facade.getMenuRepository().delete(menu)) {
             return menu;

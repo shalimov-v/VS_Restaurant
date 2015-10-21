@@ -13,7 +13,7 @@ import java.util.List;
 public class EmployeeService {
 
     @Autowired
-    FacadeRepository facade;
+    private FacadeRepository facade;
 
     @RequestMapping(produces = "application/json", method = RequestMethod.GET)
     public @ResponseBody List<Employee> loadAll() {

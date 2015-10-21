@@ -18,7 +18,7 @@ public class DishTypeRepository {
     }
 
     public List<DishType> loadAll() {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         List<DishType> dishTypes = new ArrayList<>();
         Transaction transaction = null;
         try {
@@ -30,14 +30,12 @@ public class DishTypeRepository {
                 transaction.rollback();
             }
             e.printStackTrace();
-        } finally {
-            session.close();
         }
         return dishTypes;
     }
 
     public DishType findById(int itemId) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         DishType dishType = null;
         try {
@@ -49,14 +47,12 @@ public class DishTypeRepository {
                 transaction.rollback();
             }
             e.printStackTrace();
-        } finally {
-            session.close();
         }
         return dishType;
     }
 
     public boolean create(DishType itemToCreate) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -68,14 +64,12 @@ public class DishTypeRepository {
             }
             e.printStackTrace();
             return false;
-        } finally {
-            session.close();
         }
         return true;
     }
 
     public boolean update(DishType itemToUpdate) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -87,14 +81,12 @@ public class DishTypeRepository {
             }
             e.printStackTrace();
             return false;
-        } finally {
-            session.close();
         }
         return true;
     }
 
     public boolean delete(DishType itemToDelete) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -106,8 +98,6 @@ public class DishTypeRepository {
             }
             e.printStackTrace();
             return false;
-        } finally {
-            session.close();
         }
         return true;
     }

@@ -18,7 +18,7 @@ public class MenuRepository {
     }
 
     public List<Menu> loadAll() {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         List<Menu> menus = new ArrayList<>();
         Transaction transaction = null;
         try {
@@ -35,7 +35,7 @@ public class MenuRepository {
     }
 
     public Menu findById(int itemId) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         Menu menu = null;
         try {
@@ -52,7 +52,7 @@ public class MenuRepository {
     }
 
     public List<Menu> findByDishType(int dishTypeId) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         List<Menu> menus = new ArrayList<>();
         Transaction transaction = null;
         try {
@@ -69,7 +69,7 @@ public class MenuRepository {
     }
 
     public boolean create(Menu itemToCreate) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -86,7 +86,7 @@ public class MenuRepository {
     }
 
     public boolean update(Menu itemToUpdate) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -103,7 +103,7 @@ public class MenuRepository {
     }
 
     public boolean delete(Menu itemToDelete) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();

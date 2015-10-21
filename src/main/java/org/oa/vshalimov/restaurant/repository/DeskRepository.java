@@ -18,7 +18,7 @@ public class DeskRepository {
     }
 
     public List<Desk> loadAll() {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         List<Desk> desks = new ArrayList<>();
         Transaction transaction = null;
         try {
@@ -30,14 +30,12 @@ public class DeskRepository {
                 transaction.rollback();
             }
             e.printStackTrace();
-        } finally {
-            session.close();
         }
         return desks;
     }
 
     public Desk findById(int itemId) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         Desk desk = null;
         try {
@@ -49,14 +47,12 @@ public class DeskRepository {
                 transaction.rollback();
             }
             e.printStackTrace();
-        } finally {
-            session.close();
         }
         return desk;
     }
 
     public boolean create(Desk itemToCreate) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -68,14 +64,12 @@ public class DeskRepository {
             }
             e.printStackTrace();
             return false;
-        } finally {
-            session.close();
         }
         return true;
     }
 
     public boolean update(Desk itemToUpdate) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -87,14 +81,12 @@ public class DeskRepository {
             }
             e.printStackTrace();
             return false;
-        } finally {
-            session.close();
         }
         return true;
     }
 
     public boolean delete(Desk itemToDelete) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -106,8 +98,6 @@ public class DeskRepository {
             }
             e.printStackTrace();
             return false;
-        } finally {
-            session.close();
         }
         return true;
     }

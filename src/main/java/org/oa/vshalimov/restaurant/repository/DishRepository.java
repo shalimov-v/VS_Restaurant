@@ -18,7 +18,7 @@ public class DishRepository {
     }
 
     public List<Dish> loadAll() {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         List<Dish> dishes = new ArrayList<>();
         Transaction transaction = null;
         try {
@@ -35,7 +35,7 @@ public class DishRepository {
     }
 
     public Dish findById(int itemId) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         Dish dish = null;
         try {
@@ -52,7 +52,7 @@ public class DishRepository {
     }
 
     public boolean create(Dish itemToCreate) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -69,7 +69,7 @@ public class DishRepository {
     }
 
     public boolean update(Dish itemToUpdate) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -86,7 +86,7 @@ public class DishRepository {
     }
 
     public boolean delete(Dish itemToDelete) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();

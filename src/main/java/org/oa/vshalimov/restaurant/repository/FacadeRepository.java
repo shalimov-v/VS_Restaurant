@@ -29,10 +29,6 @@ public class FacadeRepository {
         }
     }
 
-    public static FacadeRepository getInstance() {
-        return INSTANCE;
-    }
-
     public EmployeeRepository getEmployeeRepository() {
         if (employeeRepository == null) {
             employeeRepository = new EmployeeRepository(sessionFactory);

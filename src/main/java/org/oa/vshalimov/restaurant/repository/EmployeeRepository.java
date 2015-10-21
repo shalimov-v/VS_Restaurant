@@ -18,7 +18,7 @@ public class EmployeeRepository {
     }
 
     public List<Employee> loadAll() {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         List<Employee> employees = new ArrayList<>();
         Transaction transaction = null;
         try {
@@ -30,14 +30,12 @@ public class EmployeeRepository {
                 transaction.rollback();
             }
             e.printStackTrace();
-        } finally {
-            session.close();
         }
         return employees;
     }
 
     public Employee findById(int itemId) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         Employee employee = null;
         try {
@@ -49,14 +47,12 @@ public class EmployeeRepository {
                 transaction.rollback();
             }
             e.printStackTrace();
-        } finally {
-            session.close();
         }
         return employee;
     }
 
     public boolean create(Employee itemToCreate) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -68,14 +64,12 @@ public class EmployeeRepository {
             }
             e.printStackTrace();
             return false;
-        } finally {
-            session.close();
         }
         return true;
     }
 
     public boolean update(Employee itemToUpdate) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -87,14 +81,12 @@ public class EmployeeRepository {
             }
             e.printStackTrace();
             return false;
-        } finally {
-            session.close();
         }
         return true;
     }
 
     public boolean delete(Employee itemToDelete) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -106,8 +98,6 @@ public class EmployeeRepository {
             }
             e.printStackTrace();
             return false;
-        } finally {
-            session.close();
         }
         return true;
     }

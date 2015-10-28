@@ -6,11 +6,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "desk")
-@XmlRootElement(name = "Desk")
+@XmlRootElement
 public class Desk {
 
     @Id
-    @Column(name = "deskID")
+    @Column(name = "deskId")
     private int deskId;
 
     @Column(name = "deskName")

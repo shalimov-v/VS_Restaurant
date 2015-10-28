@@ -19,5 +19,7 @@
     <mapping class="org.oa.vshalimov.restaurant.data.DishType" />
     <mapping class="org.oa.vshalimov.restaurant.data.Dish" />
     <mapping class="org.oa.vshalimov.restaurant.data.Menu" />
+    <mapping class="org.oa.vshalimov.restaurant.data.Discount" />
+    <mapping class="org.oa.vshalimov.restaurant.data.Client" />
 </session-factory>
 </hibernate-configuration>

@@ -104,20 +104,19 @@ function clearDeskDetails() {
     $mainArea.find('#deskMaxPersons').val('');
 }
 
+function selectDesk() {
+    var id = $('#mainArea').find('#deskList').val();
+    if (id != 0) {
+        findDeskById(id);
+        $('#btnDelete').show();
+    }
+}
+
 $(document).ready(function(){
 
     loadAllDesks();
 
     $mainArea.find('#btnDelete').hide();
-
-    $mainArea.find('#btnLoad').click(function(){
-        var id = $('#mainArea').find('#deskList').val();
-        if (id != 0) {
-            findDeskById(id);
-            $('#btnDelete').show();
-        }
-        return false;
-    });
 
     $mainArea.find('#btnSave').click(function(){
         if ($mainArea.find('#deskId').val() == '') {

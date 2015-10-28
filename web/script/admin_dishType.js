@@ -101,20 +101,19 @@ function clearDishTypeDetails() {
     $mainArea.find('#dishTypeName').val('');
 }
 
+function selectDishType() {
+    var id = $('#mainArea').find('#dishTypeList').val();
+    if (id != 0) {
+        findDishTypeById(id);
+        $('#btnDelete').show();
+    }
+}
+
 $(document).ready(function(){
 
     loadAllDishTypes();
 
     $mainArea.find('#btnDelete').hide();
-
-    $mainArea.find('#btnLoad').click(function(){
-        var id = $('#mainArea').find('#dishTypeList').val();
-        if (id != 0) {
-            findDishTypeById(id);
-            $('#btnDelete').show();
-        }
-        return false;
-    });
 
     $mainArea.find('#btnSave').click(function(){
         if ($mainArea.find('#dishTypeId').val() == '') {

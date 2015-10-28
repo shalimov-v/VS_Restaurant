@@ -79,4 +79,8 @@ public class FacadeRepository {
         }
         return clientRepository;
     }
+
+    public void destroySession() {
+        sessionFactory.close();
+    }
 }

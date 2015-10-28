@@ -167,6 +167,14 @@ function clearDishDetails() {
     $mainArea.find('#dishDescription').val('');
 }
 
+function selectDish() {
+    var id = $('#mainArea').find('#dishList').val();
+    if (id != 0) {
+        findDishById(id);
+        $('#btnDelete').show();
+    }
+}
+
 $(document).ready(function(){
 
     loadAllDishes();
@@ -174,15 +182,6 @@ $(document).ready(function(){
     loadAllDishTypes(0);
 
     $mainArea.find('#btnDelete').hide();
-
-    $mainArea.find('#btnLoad').click(function(){
-        var id = $('#mainArea').find('#dishList').val();
-        if (id != 0) {
-            findDishById(id);
-            $('#btnDelete').show();
-        }
-        return false;
-    });
 
     $mainArea.find('#btnSave').click(function(){
         if ($mainArea.find('#dishName').val() == '' || $mainArea.find('#dishTypeList').val() == 0)  {
